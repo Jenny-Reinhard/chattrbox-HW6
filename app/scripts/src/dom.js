@@ -1,5 +1,7 @@
 import $ from 'jquery';
 import md5 from 'crypto-js/md5';
+import moment from 'moment';
+
 
 function createGravatarUrl(username) {
   let userhash = md5(username);
@@ -35,7 +37,11 @@ export class ChatList {
     this.username = username;
   }
 
-  drawMessage({user: u, timestamp: t, message: m}) {
+  drawMessage({
+    user: u,
+    timestamp: t,
+    message: m
+  }) {
     let $messageRow = $('<li>', {
       'class': 'message-row'
     });
@@ -69,7 +75,7 @@ export class ChatList {
 
     $messageRow.append($img);
     $messageRow.append($message);
-    $(this.listId).append($messageRow);
+    this.$list.append($messageRow);
     $messageRow.get(0).scrollIntoView();
   }
 
